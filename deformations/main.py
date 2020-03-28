@@ -20,7 +20,8 @@ def A2d(plist, i1, i2):
     tmp1 = -1 * float(plist[i1].y)
     tmp2 = -1 * float(plist[i2].y)
     return np.array(
-        [[float(plist[i1].x), float(tmp1), 1, 0], [float(plist[i1].y), float(plist[i1].x), 0, 1],
+        [[float(plist[i1].x), float(tmp1), 1, 0],
+         [float(plist[i1].y), float(plist[i1].x), 0, 1],
          [float(plist[i2].x), float(tmp2), 1, 0],
          [float(plist[i2].y), float(plist[i2].x), 0, 1]])
 
@@ -30,6 +31,14 @@ def A2d(plist, i1, i2):
 def L2d(slist, i1, i2):
     L = np.array([float(slist[i1].x), float(slist[i1].y), float(slist[i2].x), float(slist[i2].y)])
     return L.transpose()
+
+
+def lsf(A, L):
+    At = A.transpose()
+    AtA = np.matmul(At, A)
+    AtA_1 = np.linalg.inv(AtA)
+    AtL = np.matmul(At, L)
+    return np.matmul(AtA_1, AtL)
 
 
 if __name__ == "__main__":
@@ -58,11 +67,7 @@ if __name__ == "__main__":
     print(L2d(s.points, i1, i2))
 
     A = A2d(p.points, i1, i2)
-    At = A.transpose()
-    AtA = np.matmul(At, A)
-    AtA_1 = np.linalg.inv(AtA)
-    AtL = np.matmul(At, L2d(s.points, i1, i2))
-    X = np.matmul(AtA_1, AtL)
+    L = L2d(s.points, i1, i2)
+    X= lsf(A,L)
 
-    print('AtpA-1 AtpL')
     print(X)
