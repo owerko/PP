@@ -17,13 +17,11 @@ def helmert_points_idx():
 
 
 def A2d(plist, i1, i2):
-    tmp1 = -1 * float(plist[i1].y)
-    tmp2 = -1 * float(plist[i2].y)
     return np.array(
-        [[float(plist[i1].x), float(tmp1), 1, 0],
-         [float(plist[i1].y), float(plist[i1].x), 0, 1],
-         [float(plist[i2].x), float(tmp2), 1, 0],
-         [float(plist[i2].y), float(plist[i2].x), 0, 1]])
+        [(float(plist[i1].x), -1 * float(plist[i1].y), 1, 0),
+         (float(plist[i1].y), float(plist[i1].x), 0, 1),
+         (float(plist[i2].x), -1 * float(plist[i2].y), 1, 0),
+         (float(plist[i2].y), float(plist[i2].x), 0, 1)])
 
     # print(p.points[1].x)
 
