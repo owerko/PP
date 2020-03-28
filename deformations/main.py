@@ -66,6 +66,6 @@ if __name__ == "__main__":
 
     A = A2d(p.points, i1, i2)
     L = L2d(s.points, i1, i2)
-    X= lsf(A,L)
+    X = lsf(A, L)
 
     print(X)
