@@ -1,5 +1,6 @@
 from deformations.point import Point
 from deformations.epoch import Epoch
+import itertools as it
 import numpy as np
 import math
 import os
@@ -42,6 +43,9 @@ def lsf(A, L):
 
 def euklides(x1, x2, y1, y2):
     return math.sqrt((float(x2) - float(x1)) ** 2 + (float(y2) - float(y1)) ** 2)
+
+def kombinacje():
+    return it.combinations(range(6), 2)
 
 
 if __name__ == "__main__":
@@ -89,3 +93,7 @@ if __name__ == "__main__":
     for n, point in enumerate(s.points):
         d = 1000 * euklides(point.x, x_obl[n], point.y, y_obl[n])
         print(f'{d:.3} mm')
+        if d > 3:
+            print(f'Punkt o indeksie {n} należy uznać za przemieszczony')
+
+
