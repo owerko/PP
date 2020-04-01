@@ -1,6 +1,7 @@
 from deformations.point import Point
 from deformations.epoch import Epoch
 import numpy as np
+import math
 import os
 
 
@@ -39,6 +40,10 @@ def lsf(A, L):
     return np.matmul(AtA_1, AtL)
 
 
+def euklides(x1, x2, y1, y2):
+    return math.sqrt((float(x2) - float(x1)) ** 2 + (float(y2) - float(y1)) ** 2)
+
+
 if __name__ == "__main__":
     dane_pierowtne, dane_wtorne = ustawienia()
     with open(dane_pierowtne, 'r') as f:
@@ -68,4 +73,19 @@ if __name__ == "__main__":
     L = L2d(s.points, i1, i2)
     X = lsf(A, L)
 
-    print(X)
+    print(f'{X[0]} {X[1]} {X[2]} {X[3]}')
+
+    x_obl = []
+    y_obl = []
+
+    for point in p.points:
+        x = X[0] * float(point.x) - X[1] * float(point.y) + X[2]
+        y = X[1] * float(point.x) + X[0] * float(point.y) + X[3]
+        print(x)
+        print(y)
+        x_obl.append(x)
+        y_obl.append(y)
+
+    for n, point in enumerate(s.points):
+        d = 1000 * euklides(point.x, x_obl[n], point.y, y_obl[n])
+        print(f'{d:.3} mm')
