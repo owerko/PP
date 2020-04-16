@@ -72,4 +72,8 @@ if __name__ == '__main__':
     Xhz = lsf(Ahz(epoka), Lhz(epoka))
     print(f'Przemieszczenie X {Xhz[0]:.2f} mm, Przemieszczenie Y {Xhz[1]:.2f} mm, Epsilon X {Xhz[2]:.3f}')
     print(f'Epsilon Y {Xhz[3]:.2f}, Gamma XY {Xhz[4]:.2f}, obrot wokol osi Z {Xhz[5]:.3f} mm/m')
-
+    mat = np.array([(Xhz[2], Xhz[4]), (Xhz[4], Xhz[3])])
+    z = np.linalg.eigvals(mat)
+    print(f'Wartosci własne macierzy Ex, Ey, Gxy: {z}')
+    zv = np.linalg.eig(mat)
+    print(f'Wektory wlasne: {zv[1][0]} {zv[1][1]}')
