@@ -25,6 +25,21 @@ def L(epoch):
         lst.append(float(epoch.points[i].dz))
     return np.array(lst)
 
+def Ahz(epoch):
+    lst = []
+    for i in range(len(epoch.points)):
+        lst.append((1, 0, epoch.points[i].x, 0, epoch.points[i].y, -1*epoch.points[i].y))
+    for i in range(len(epoch.points)):
+        lst.append((0, 1, 0, epoch.points[i].y, epoch.points[i].x, epoch.points[i].x))
+    return np.array(lst)
+
+def Lhz(epoch):
+    lst = []
+    for i in range(len(epoch.points)):
+        lst.append(float(epoch.points[i].dx))
+    for i in range(len(epoch.points)):
+        lst.append(float(epoch.points[i].dy))
+    return np.array(lst)
 
 def lsf(A, L):
     At = A.transpose()
@@ -54,3 +69,7 @@ if __name__ == '__main__':
     print(L(epoka))
     X = lsf(A(epoka), L(epoka))
     print(f'Osiadanie wynosi {X[0]:.2f} mm, obrot wokol osi X {X[1]:.3f} mm/m, obrot wokol osi Y {X[2]:.3f} mm/m')
+    Xhz = lsf(Ahz(epoka), Lhz(epoka))
+    print(f'Przemieszczenie X {Xhz[0]:.2f} mm, Przemieszczenie Y {Xhz[1]:.2f} mm, Epsilon X {Xhz[2]:.3f}')
+    print(f'Epsilon Y {Xhz[3]:.2f}, Gamma XY {Xhz[4]:.2f}, obrot wokol osi Z {Xhz[5]:.3f} mm/m')
+
