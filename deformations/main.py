@@ -5,6 +5,7 @@ import numpy as np
 import math
 import os
 
+# uzytkownik podaje indeksy naturalne od 1, ale obliczenia sa prowadzone jak w Pythonie -> indeksy od 0.
 
 def ustawienia():
     pierwotna = input("Podaj nazwę pliku z epoką Pierowtną (name.txt): ")
@@ -15,7 +16,7 @@ def ustawienia():
 def helmert_points_idx():
     i1 = input('Podaj indeks pierwszego punktu referencyjnego: ')
     i2 = input('Podaj indeks drugiego punktu referencyjnego: ')
-    return int(i1), int(i2)
+    return int(i1)-1, int(i2)-1
 
 
 def A2d(plist, i1, i2):
@@ -92,8 +93,7 @@ if __name__ == "__main__":
 
     for n, point in enumerate(s.points):
         d = 1000 * euklides(point.x, x_obl[n], point.y, y_obl[n])
-        print(f'{d:.3} mm')
         if d > 3:
-            print(f'Punkt o indeksie {n} należy uznać za przemieszczony')
+            print(f'Punkt o indeksie {n+1} należy uznać za przemieszczony - d= {d:.3} mm')
 
 
