@@ -40,8 +40,7 @@ def BronKerbosch(P, R=None, X=None):
         yield R
     while P:
         v = P.pop()
-        yield from BronKerbosch(
-            P=P.intersection(N[v]), R=R.union([v]), X=X.intersection(N[v]))
+        yield from BronKerbosch(P=P.intersection(N[v]), R=R.union([v]), X=X.intersection(N[v]))
         X.add(v)
 
 
@@ -53,4 +52,4 @@ m = max(liczba_stalych)
 index = [i for i, j in enumerate(liczba_stalych) if j == m]
 
 for i in index:
-    print(lista_stalych[i])
+    print(f'Lista reperów srtałych - indeksy od 0: {lista_stalych[i]}')
