@@ -25,13 +25,15 @@ def L(epoch):
         lst.append(float(epoch.points[i].dz))
     return np.array(lst)
 
+
 def Ahz(epoch):
     lst = []
     for i in range(len(epoch.points)):
-        lst.append((1, 0, epoch.points[i].x, 0, epoch.points[i].y, -1*epoch.points[i].y))
+        lst.append((1, 0, epoch.points[i].x, 0, epoch.points[i].y, -1 * epoch.points[i].y))
     for i in range(len(epoch.points)):
         lst.append((0, 1, 0, epoch.points[i].y, epoch.points[i].x, epoch.points[i].x))
     return np.array(lst)
+
 
 def Lhz(epoch):
     lst = []
@@ -40,6 +42,7 @@ def Lhz(epoch):
     for i in range(len(epoch.points)):
         lst.append(float(epoch.points[i].dy))
     return np.array(lst)
+
 
 def lsf(A, L):
     At = A.transpose()
