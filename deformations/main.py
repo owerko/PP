@@ -94,6 +94,6 @@ if __name__ == "__main__":
     for n, point in enumerate(s.points):
         d = 1000 * euklides(point.x, x_obl[n], point.y, y_obl[n])
         if d > 3:
-            print(f'Punkt o indeksie {n+1} należy uznać za przemieszczony - d= {d:.3} mm')
+            print(f'Punkt o indeksie {n+1} należy uznać za przemieszczony - d = {d:.3} mm')
 
 

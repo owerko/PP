@@ -45,7 +45,7 @@ plt.show()
 
 pca = decomposition.PCA(n_components=2)
 pca.fit(X)
-Z = pca.transform(X)
+X2D = pca.transform(X)
 
 #
 print("Principal axes:", pca.components_)
@@ -54,14 +54,14 @@ print("2D Explained variance ratio:", pca.explained_variance_ratio_)
 print("Mean:", pca.mean_)
 #
 Z = pca.transform(X)
-plt.scatter(Z[:, 0], Z[:, 1])
+plt.scatter(X2D[:, 0], X2D[:, 1])
 plt.show()
 
 pca = decomposition.PCA(n_components=1)
 pca.fit(X)
-Z = pca.transform(X)
+X1D = pca.transform(X)
 print(pca.components_)
 plt.axis('equal')
-plt.scatter(Z[:, 0], np.zeros(len(Z[:, 0])))
+plt.scatter(X1D[:, 0], np.zeros(len(X1D[:, 0])))
 plt.title('1D PCA')
 plt.show()
